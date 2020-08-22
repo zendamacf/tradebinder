@@ -1,1 +1,6 @@
 include: package:pedantic/analysis_options.yaml
+
+# Ignore dependencies installed during CI
+analyzer:
+  exclude:
+    - flutter/**
