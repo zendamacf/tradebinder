@@ -15,7 +15,7 @@ cache:
     - $HOME/.pub-cache
 
 before_script:
-  - echo '{"api_key": "$API_KEY"}' > assets/secret.json
+  - echo "$CI_SECRETS" > assets/secret.json
 
 jobs:
   include:
