@@ -5,8 +5,8 @@ import 'package:tradebinder/notification.dart';
 class CardFetcher {
   int notificationId = 0;
 
-  run() async {
-    final notification = new Notification(
+  void run() async {
+    final notification = Notification(
       notificationId,
       'Trade Binder',
       'Checking for card updates.'

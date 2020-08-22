@@ -8,8 +8,8 @@ class Notification {
   AndroidFlutterLocalNotificationsPlugin plugin;
   String channelId = 'tradebinder';
 
-  cancel() {
-    plugin.cancel(this.id);
+  void cancel() {
+    plugin.cancel(id);
   }
 
   Notification(int id, String title, String body) {

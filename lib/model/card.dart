@@ -21,15 +21,15 @@ class MagicCard {
   DateTime priceUpdated;
 
   Future refreshPrice() async {
-    final resp = await Api.getPrice(this.id);
-    final prices = (this.foil) ? resp['foil'] : resp['normal'];
-    this.price = Utils.parseMoney(prices[Config.pricePoint]);
-    this.priceUpdated = DateTime.parse(prices['updated']);
+    final resp = await Api.getPrice(id);
+    final prices = (foil) ? resp['foil'] : resp['normal'];
+    price = Utils.parseMoney(prices[Config.pricePoint]);
+    priceUpdated = DateTime.parse(prices['updated']);
   }
 
   MagicCard({this.id, this.collectornumber, this.name, this.rarity, this.type, this.power, this.toughness, this.oracletext, this.flavortext, this.url, this.imageurl, this.setname});
 
-  factory MagicCard.fromMap(Map<String, dynamic> m) => new MagicCard(
+  factory MagicCard.fromMap(Map<String, dynamic> m) => MagicCard(
     id: m['id'],
     collectornumber: m['collectornumber'],
     name: m['name'],

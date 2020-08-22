@@ -53,27 +53,27 @@ class _TradeListState extends State<TradeList> {
     _recalulateTotal();
   }
 
-  _addCard() async {
-    this.cards.add(newCard);
+  void _addCard() async {
+    cards.add(newCard);
     await newCard.refreshPrice();
     print('Added a card');
     _recalulateTotal();
   }
 
-  _recalulateTotal() {
-    final double sum = this.cards.fold(0, (previousValue, element) => previousValue + element.price * element.quantity);
-    setState(() { this.total = sum; });
+  void _recalulateTotal() {
+    final sum = cards.fold(0, (previousValue, element) => previousValue + element.price * element.quantity);
+    setState(() { total = sum; });
   }
 
   ListView _buildList(context) {
     return ListView.builder(
-      itemCount: this.cards.length,
+      itemCount: cards.length,
       itemBuilder: (BuildContext context, int index) {
         var card = cards[index];
         return ListTile(
           title: Text(card.name),
           subtitle: Text('${card.quantity} x ${Utils.formatMoney(card.price)}'),
-          leading: new RemoteImage(card.imageurl),
+          leading: RemoteImage(card.imageurl),
         );
       },
     );
@@ -95,7 +95,7 @@ class _TradeListState extends State<TradeList> {
             )
           ),
           Container(
-            child: Text('Total: ${Utils.formatMoney(this.total)}')
+            child: Text('Total: ${Utils.formatMoney(total)}')
           ),
           Expanded(
             child: _buildList(context)

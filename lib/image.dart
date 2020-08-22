@@ -10,9 +10,9 @@ class RemoteImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Image(image: new NetworkImageWithRetry(
-      this.url,
-      fetchStrategy: new FetchStrategyBuilder(maxAttempts: 1).build(),
+    return Image(image: NetworkImageWithRetry(
+      url,
+      fetchStrategy: FetchStrategyBuilder(maxAttempts: 1).build(),
     ));
   }
 }
