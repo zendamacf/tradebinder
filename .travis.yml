@@ -18,7 +18,7 @@ jobs:
   include:
     - stage: test
       name: "Linting"
-      script: ./flutter/bin/flutter analyze
+      script: ./flutter/bin/flutter analyze lib/
     # - script: ./flutter/bin/flutter test
     #   name: "Unit Tests"
     # - stage: build
