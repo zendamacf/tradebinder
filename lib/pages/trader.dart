@@ -61,7 +61,7 @@ class _TradeListState extends State<TradeList> {
   }
 
   void _recalulateTotal() {
-    final sum = cards.fold(0, (previousValue, element) => previousValue + element.price * element.quantity);
+    final sum = cards.fold(0.0, (previousValue, element) => previousValue + element.price * element.quantity);
     setState(() { total = sum; });
   }
 

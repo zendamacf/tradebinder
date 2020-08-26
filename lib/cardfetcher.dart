@@ -1,4 +1,5 @@
 import 'package:tradebinder/api.dart';
+import 'package:tradebinder/db.dart';
 import 'package:tradebinder/notification.dart';
 
 
@@ -13,8 +14,9 @@ class CardFetcher {
     );
 
     var cards = await Api.getAllCards();
-    // TODO: Store the cards somewhere
-    print(cards.length);
+    // Store the cards in the database
+    await DB.db.addCards(cards);
+    print('Finished inserting cards');
 
     notification.cancel();
   }

@@ -26,7 +26,9 @@ class Api {
   }
 
   static Future<List<MagicCard>> getAllCards() async {
-    var cards = [];
+    // Explicitly declare, as otherwise it assumes List<dynamic>
+    // ignore: omit_local_variable_types
+    List<MagicCard> cards = [];
     var page = 1;
     // Some arbitrary large number that should be bigger
     // than the number of pages

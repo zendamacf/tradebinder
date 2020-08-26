@@ -2,6 +2,9 @@ import 'dart:convert' show json;
 import 'package:flutter/services.dart' show rootBundle;
 
 class Config {
+  static const DBFILE = 'tradebinder.db';
+  static const SCHEMAVERSION = 1;
+
   static String get pricePoint {
     return 'mid';
   }

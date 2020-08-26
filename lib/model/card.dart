@@ -44,4 +44,20 @@ class MagicCard {
     setname: m['setname'],
   );
 
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'collectornumber': collectornumber,
+      'name': name,
+      'rarity': rarity,
+      'type': type,
+      'power': power,
+      'toughness': toughness,
+      'oracletext': oracletext,
+      'flavortext': flavortext,
+      'url': url,
+      'imageurl': imageurl,
+      'setname': setname,
+    };
+  }
 }
