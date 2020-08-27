@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tradebinder/db.dart';
 import 'package:tradebinder/image.dart';
-import 'package:tradebinder/model/card.dart';
+import 'package:tradebinder/model/magiccard.dart';
 import 'package:tradebinder/utils.dart';
 
 
@@ -10,6 +11,32 @@ class TradePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Trade Binder'),
+        actions: <Widget>[
+          FutureBuilder(
+            future: DB.getAllCards(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                final List<MagicCard> cardList = snapshot.data;
+                return IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () {
+                    showSearch(
+                      context: context,
+                      delegate: CardSearchDelegate(cardList),
+                    );
+                  },
+                );
+              } else {
+                return Container(
+                  width: 60.0,
+                  height: 20.0,
+                  color: Colors.lightGreen,
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          )
+        ],
       ),
       body: Container(
         child: Row(
@@ -21,6 +48,66 @@ class TradePage extends StatelessWidget {
       )
     );
   }
+}
+
+
+class CardSearchDelegate extends SearchDelegate<MagicCard> {
+  final List<MagicCard> cardList;
+
+  CardSearchDelegate(this.cardList);
+
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    // Pass through the app's theme
+    assert(context != null);
+    final theme = Theme.of(context);
+    assert(theme != null);
+    return theme;
+  }
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  Widget buildCardList() {
+    final suggestionList = query.isEmpty
+      ? cardList
+      : cardList.where((card) => card.name.toLowerCase().contains(query.toLowerCase())).toList();
+    
+    return ListView.builder(
+      itemCount: suggestionList.length,
+      itemBuilder: (context, index) {
+        final card = suggestionList[index];
+        return ListTile(
+          title: Text('${card.id} ${card.name} ${card.setname}'),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) => buildCardList();
+
+  @override
+  Widget buildSuggestions(BuildContext context) => buildCardList();
 }
 
 

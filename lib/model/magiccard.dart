@@ -1,19 +1,35 @@
+import 'package:hive/hive.dart';
 import 'package:tradebinder/api.dart';
 import 'package:tradebinder/config.dart';
 import 'package:tradebinder/utils.dart';
 
+part 'magiccard.g.dart';
+
+@HiveType(typeId: 1)
 class MagicCard {
+  @HiveField(0)
   final int id;
+  @HiveField(1)
   final String collectornumber;
+  @HiveField(2)
   final String name;
+  @HiveField(3)
   final String rarity;
+  @HiveField(4)
   final String type;
+  @HiveField(5)
   final String power;
+  @HiveField(6)
   final String toughness;
+  @HiveField(7)
   final String oracletext;
+  @HiveField(8)
   final String flavortext;
+  @HiveField(9)
   final String url;
+  @HiveField(10)
   final String imageurl;
+  @HiveField(11)
   final String setname;
   bool foil = false;
   int quantity = 1;

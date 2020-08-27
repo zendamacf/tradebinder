@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:tradebinder/config.dart';
-import 'package:tradebinder/model/card.dart';
+import 'package:tradebinder/model/magiccard.dart';
 
 class Api {
   static Future<dynamic> _get(String endpoint, {Map<String, dynamic> params}) async {

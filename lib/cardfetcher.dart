@@ -15,7 +15,7 @@ class CardFetcher {
 
     var cards = await Api.getAllCards();
     // Store the cards in the database
-    await DB.db.addCards(cards);
+    await DB.addCards(cards);
     print('Finished inserting cards');
 
     notification.cancel();
