@@ -31,6 +31,8 @@ class MagicCard {
   final String imageurl;
   @HiveField(11)
   final String setname;
+  @HiveField(12)
+  final String setcode;
   bool foil = false;
   int quantity = 1;
   double price;
@@ -43,7 +45,7 @@ class MagicCard {
     priceUpdated = DateTime.parse(prices['updated']);
   }
 
-  MagicCard({this.id, this.collectornumber, this.name, this.rarity, this.type, this.power, this.toughness, this.oracletext, this.flavortext, this.url, this.imageurl, this.setname});
+  MagicCard({this.id, this.collectornumber, this.name, this.rarity, this.type, this.power, this.toughness, this.oracletext, this.flavortext, this.url, this.imageurl, this.setname, this.setcode});
 
   factory MagicCard.fromMap(Map<String, dynamic> m) => MagicCard(
     id: m['id'],
@@ -58,6 +60,7 @@ class MagicCard {
     url: m['url'],
     imageurl: m['imageurl'],
     setname: m['setname'],
+    setcode: m['setcode'],
   );
 
   Map<String, dynamic> toMap() {
@@ -74,6 +77,7 @@ class MagicCard {
       'url': url,
       'imageurl': imageurl,
       'setname': setname,
+      'setcode': setcode,
     };
   }
 }

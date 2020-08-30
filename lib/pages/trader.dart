@@ -97,7 +97,7 @@ class CardSearchDelegate extends SearchDelegate<MagicCard> {
       itemBuilder: (context, index) {
         final card = suggestionList[index];
         return ListTile(
-          title: Text('${card.id} ${card.name} ${card.setname}'),
+          title: Text('${card.id} ${card.name} ${card.setname} [${card.setcode}]'),
         );
       },
     );

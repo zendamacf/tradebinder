@@ -29,6 +29,7 @@ class MagicCardAdapter extends TypeAdapter<MagicCard> {
       url: fields[9] as String,
       imageurl: fields[10] as String,
       setname: fields[11] as String,
+      setcode: fields[12] as String,
     );
   }
 
@@ -59,7 +60,9 @@ class MagicCardAdapter extends TypeAdapter<MagicCard> {
       ..writeByte(10)
       ..write(obj.imageurl)
       ..writeByte(11)
-      ..write(obj.setname);
+      ..write(obj.setname)
+      ..writeByte(12)
+      ..write(obj.setcode);
   }
 
   @override
