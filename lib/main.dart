@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:tradebinder/cardfetcher.dart';
 import 'package:tradebinder/model/magiccard.dart';
 import 'package:tradebinder/pages/splash.dart';
 
@@ -16,9 +15,6 @@ void main() async {
 class TradeBinder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Check for any new cards from API
-    CardFetcher().run();
-
     return MaterialApp(
       title: 'Trade Binder',
       theme: ThemeData(

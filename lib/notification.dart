@@ -12,7 +12,7 @@ class Notification {
     plugin.cancel(id);
   }
 
-  Notification(int id, String title, String body) {
+  Notification(int id, String title, String body, {bool persist=true}) {
     this.id = id;
     this.title = title;
     this.body = body;
@@ -34,7 +34,7 @@ class Notification {
         priority: Priority.Low,
         ticker: this.title,
         enableVibration: false,
-        ongoing: true  //  Prevent dismissing the notification
+        ongoing: persist  //  Whether to allow dismissing the notification
     );
 
     plugin.show(

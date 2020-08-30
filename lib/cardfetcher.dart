@@ -19,5 +19,15 @@ class CardFetcher {
     print('Finished inserting $count new cards of ${cards.length}');
 
     notification.cancel();
+
+    // Show any new cards added
+    if (count > 0) {
+      Notification(
+        notificationId,
+        'Trade Binder',
+        'Added $count new cards.',
+        persist: false
+      );
+    }
   }
 }

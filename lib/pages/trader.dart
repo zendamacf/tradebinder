@@ -1,19 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:tradebinder/db.dart';
+import 'package:tradebinder/bloc/magiccardbloc.dart';
 import 'package:tradebinder/image.dart';
 import 'package:tradebinder/model/magiccard.dart';
 import 'package:tradebinder/utils.dart';
 
 
-class TradePage extends StatelessWidget {
+class TradePage extends StatefulWidget {
+  @override
+  TradePageState createState() => TradePageState();
+}
+
+
+class TradePageState extends State<TradePage> {
+  final bloc = MagicCardBloc();
+
+  @override
+  void dispose() {
+    bloc.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    bloc.synchronize();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Trade Binder'),
         actions: <Widget>[
-          FutureBuilder(
-            future: DB.getAllCards(),
+          StreamBuilder(
+            stream: bloc.cards,
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 final List<MagicCard> cardList = snapshot.data;
