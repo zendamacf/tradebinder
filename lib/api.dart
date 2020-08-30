@@ -35,12 +35,12 @@ class Api {
     var pageCount = 999999999999999;
 
     // Loop through pages until we hit the end
-    while (page < pageCount){
+    while (page <= pageCount){
       final res = await getCardPage(page);
       cards += res['cards'].map<MagicCard>((r) => MagicCard.fromMap(r)).toList();
-      page++;
       pageCount = res['pagecount'];
       print('Fetched page $page of $pageCount');
+      page++;
     }
     return cards;
   }

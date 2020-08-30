@@ -15,8 +15,8 @@ class CardFetcher {
 
     var cards = await Api.getAllCards();
     // Store the cards in the database
-    await DB.addCards(cards);
-    print('Finished inserting cards');
+    final count = await DB.addCards(cards);
+    print('Finished inserting $count new cards of ${cards.length}');
 
     notification.cancel();
   }
