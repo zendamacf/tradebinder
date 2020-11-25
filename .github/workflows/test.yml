@@ -14,6 +14,12 @@ jobs:
           java-version: '12.x'
       - uses: subosito/flutter-action@v1
 
+      - shell: bash
+        env:
+          SECRET_JSON: ${{ secrets.SECRET_JSON }}
+        run: |
+          echo "$SECRET_JSON" > assets/secret.json
+
       - name: Install dependencies
         run: flutter pub get
 
