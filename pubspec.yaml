@@ -13,6 +13,7 @@ dependencies:
   dio: ^3.0.10
   flutter_image: ^3.0.0
   flutter_local_notifications: ^1.4.4+3
+  hashids2: ^1.0.3+1
   hive: ^1.4.1+1
   hive_flutter: ^0.3.0+2
   intl: ^0.16.1

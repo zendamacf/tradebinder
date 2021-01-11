@@ -17,30 +17,27 @@ class Api {
     }
   }
 
-  static Future<Map> getCardPage(int page) async {
+  static Future<Map> getCardPage(String cursor) async {
     Map res = await Api._get('cards', params: {
-      'page': page,
+      'cursor': cursor,
       'limit': 2500  // Maximum API will allow
     });
     return res;
   }
 
-  static Future<List<MagicCard>> getAllCards() async {
+  static Future<List<MagicCard>> getNewCards(String cursor) async {
     // Explicitly declare, as otherwise it assumes List<dynamic>
     // ignore: omit_local_variable_types
     List<MagicCard> cards = [];
-    var page = 1;
-    // Some arbitrary large number that should be bigger
-    // than the number of pages
-    var pageCount = 999999999999999;
 
-    // Loop through pages until we hit the end
-    while (page <= pageCount){
-      final res = await getCardPage(page);
-      cards += res['cards'].map<MagicCard>((r) => MagicCard.fromMap(r)).toList();
-      pageCount = res['pagecount'];
-      print('Fetched page $page of $pageCount');
-      page++;
+    while (true) {
+      final res = await getCardPage(cursor);
+      final newCards = res['data'].map<MagicCard>((r) => MagicCard.fromMap(r)).toList();
+      cards += newCards;
+      print('Fetched ${newCards.length} cards using cursor $cursor');
+      cursor = res['cursor'];
+      if (cursor == null) break;  // No more pages
+      print('New cursor ${res['cursor']}');
     }
     return cards;
   }

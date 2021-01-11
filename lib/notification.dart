@@ -12,7 +12,7 @@ class Notification {
     plugin.cancel(id);
   }
 
-  Notification(int id, String title, String body, {bool persist=true}) {
+  Notification(int id, String title, String body, {bool persist=false}) {
     this.id = id;
     this.title = title;
     this.body = body;
