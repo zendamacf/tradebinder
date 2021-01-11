@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tradebinder/bloc/magiccardbloc.dart';
-import 'package:tradebinder/image.dart';
 import 'package:tradebinder/model/magiccard.dart';
 import 'package:tradebinder/utils.dart';
+import 'package:tradebinder/widgets/cardtile.dart';
 import 'package:tradebinder/widgets/menu.dart';
 
 
@@ -148,6 +148,7 @@ class _TradeListState extends State<TradeList> {
       'url': 'https://store.tcgplayer.com/magic/ikoria-lair-of-behemoths/eerie-ultimatum',
       'imageurl': 'https://tcgplayer-cdn.tcgplayer.com/product/212551_400w.jpg',
       'setname': 'Ikoria: Lair of Behemoths',
+      'setcode': 'IKO'
   });
   final List<MagicCard> cards = [];
   double total;
@@ -159,7 +160,14 @@ class _TradeListState extends State<TradeList> {
   }
 
   void _addCard() async {
-    cards.add(newCard);
+    final existing = cards.where((card) => card.id == newCard.id).toList();
+    if (existing.isNotEmpty) {
+      final index = cards.indexOf(existing[0]);
+      existing[0].quantity++;
+      cards[index] = existing[0];
+    } else {
+      cards.add(newCard);
+    }
     await newCard.refreshPrice();
     print('Added a card');
     _recalulateTotal();
@@ -174,12 +182,7 @@ class _TradeListState extends State<TradeList> {
     return ListView.builder(
       itemCount: cards.length,
       itemBuilder: (BuildContext context, int index) {
-        var card = cards[index];
-        return ListTile(
-          title: Text(card.name),
-          subtitle: Text('${card.quantity} x ${Utils.formatMoney(card.price)}'),
-          leading: RemoteImage(card.imageurl),
-        );
+        return CardTile(cards[index]);
       },
     );
   }
