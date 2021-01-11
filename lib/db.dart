@@ -29,4 +29,9 @@ class DB {
     cards.sort((a, b) => a.name.compareTo(b.name));
     return cards;
   }
+
+  static Future<void> deleteAllCards() async {
+    final box = await cardBox;
+    await box.clear();
+  }
 }

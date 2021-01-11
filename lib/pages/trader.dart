@@ -3,6 +3,7 @@ import 'package:tradebinder/bloc/magiccardbloc.dart';
 import 'package:tradebinder/image.dart';
 import 'package:tradebinder/model/magiccard.dart';
 import 'package:tradebinder/utils.dart';
+import 'package:tradebinder/widgets/menu.dart';
 
 
 class TradePage extends StatefulWidget {
@@ -25,6 +26,7 @@ class TradePageState extends State<TradePage> {
     bloc.synchronize();
 
     return Scaffold(
+      drawer: DrawerMenu(),
       appBar: AppBar(
         title: Text('Trade Binder'),
         actions: <Widget>[
@@ -144,7 +146,7 @@ class _TradeListState extends State<TradeList> {
       'oracletext': 'Return any number of permanent cards with different names from your graveyard to the battlefield.',
       'flavortext': '<em>"The ground under our feet is a record of every slight against the world, to be avenged at a time of its choosing." -Gavi, nest warden</em>',
       'url': 'https://store.tcgplayer.com/magic/ikoria-lair-of-behemoths/eerie-ultimatum',
-      'imageurl': 'https://6d4be195623157e28848-7697ece4918e0a73861de0eb37d08968.ssl.cf1.rackcdn.com/212551_200w.jpg',
+      'imageurl': 'https://tcgplayer-cdn.tcgplayer.com/product/212551_400w.jpg',
       'setname': 'Ikoria: Lair of Behemoths',
   });
   final List<MagicCard> cards = [];
