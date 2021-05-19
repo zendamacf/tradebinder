@@ -30,8 +30,8 @@ class Notification {
         channelId,
         'Trade Binder',
         'Trade Binder notifications.',
-        importance: Importance.Low,  // Silent without popup
-        priority: Priority.Low,
+        importance: Importance.low,  // Silent without popup
+        priority: Priority.low,
         ticker: this.title,
         enableVibration: false,
         ongoing: persist  //  Whether to allow dismissing the notification

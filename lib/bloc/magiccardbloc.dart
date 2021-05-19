@@ -56,6 +56,6 @@ class MagicCardBloc {
       );
     }
 
-    await getCards();
+    getCards();
   }
 }

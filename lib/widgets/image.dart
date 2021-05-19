@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_image/network.dart';
 
 // Attempt to fetch remote image for display, without
 // throwing an exception if it 404s
@@ -10,9 +9,11 @@ class RemoteImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image(image: NetworkImageWithRetry(
+    return Image.network(
       url,
-      fetchStrategy: FetchStrategyBuilder(maxAttempts: 1).build(),
-    ));
+      errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
+        return Container();
+      },
+    );
   }
 }

@@ -5,24 +5,24 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=2.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^0.1.3
-  dio: ^3.0.10
-  flutter_image: ^3.0.0
-  flutter_local_notifications: ^1.4.4+3
-  hashids2: ^1.0.3+1
-  hive: ^1.4.1+1
-  hive_flutter: ^0.3.0+2
-  intl: ^0.16.1
-  path_provider: ^1.6.5
+  cupertino_icons: ^1.0.3
+  dio: ^4.0.0
+  flutter_local_notifications: ^5.0.0
+  hashids2: ^2.0.0
+  hive: ^2.0.4
+  hive_flutter: ^1.0.0
+  intl: ^0.17.0
+  path_provider: ^2.0.1
 
 dev_dependencies:
-  hive_generator: ^0.7.0+2
-  build_runner: ^1.8.0
-  pedantic: ^1.9.0
+  hive_generator: ^1.1.0
+  build_runner: ^2.0.3
+  pedantic: ^1.11.0
 
 flutter:
   uses-material-design: true

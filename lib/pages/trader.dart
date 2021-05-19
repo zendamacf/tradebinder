@@ -3,6 +3,7 @@ import 'package:tradebinder/bloc/magiccardbloc.dart';
 import 'package:tradebinder/model/magiccard.dart';
 import 'package:tradebinder/utils.dart';
 import 'package:tradebinder/widgets/cardtile.dart';
+import 'package:tradebinder/widgets/image.dart';
 import 'package:tradebinder/widgets/menu.dart';
 
 
@@ -56,14 +57,32 @@ class TradePageState extends State<TradePage> {
           )
         ],
       ),
-      body: Container(
-        child: Row(
-          children: <Widget>[
-            Expanded(child: TradeList()),
-            Expanded(child: TradeList()),
-          ],
-        )
-      )
+      body: Column(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: RemoteImage('https://tcgplayer-cdn.tcgplayer.com/product/212551_400w.jpg')
+                ),
+              ], 
+            ),
+          ),
+          Expanded(
+            flex: 8,
+            child: Container(
+              child: Row(
+                children: <Widget>[
+                  Expanded(child: TradeList()),
+                  Expanded(child: TradeList()),
+                ],
+              )
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -196,10 +215,9 @@ class _TradeListState extends State<TradeList> {
       child: Column(
         children: <Widget>[
           Container(
-            child: RaisedButton(
+            child: ElevatedButton(
               onPressed: _addCard,
               child: Text('Add Card'),
-              color: Colors.indigoAccent,
             )
           ),
           Container(
