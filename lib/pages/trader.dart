@@ -35,7 +35,7 @@ class TradePageState extends State<TradePage> {
             stream: bloc.cards,
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
-                final List<MagicCard> cardList = snapshot.data;
+                final List<MagicCard>? cardList = snapshot.data;
                 return IconButton(
                   icon: Icon(Icons.search),
                   onPressed: () {
@@ -88,17 +88,15 @@ class TradePageState extends State<TradePage> {
 }
 
 
-class CardSearchDelegate extends SearchDelegate<MagicCard> {
-  final List<MagicCard> cardList;
+class CardSearchDelegate extends SearchDelegate<MagicCard?> {
+  final List<MagicCard>? cardList;
 
   CardSearchDelegate(this.cardList);
 
   @override
   ThemeData appBarTheme(BuildContext context) {
     // Pass through the app's theme
-    assert(context != null);
     final theme = Theme.of(context);
-    assert(theme != null);
     return theme;
   }
 
@@ -126,8 +124,8 @@ class CardSearchDelegate extends SearchDelegate<MagicCard> {
 
   Widget buildCardList() {
     final suggestionList = query.isEmpty
-      ? cardList
-      : cardList.where((card) => card.name.toLowerCase().contains(query.toLowerCase())).toList();
+      ? cardList!
+      : cardList!.where((card) => card.name!.toLowerCase().contains(query.toLowerCase())).toList();
     
     return ListView.builder(
       itemCount: suggestionList.length,
@@ -170,7 +168,7 @@ class _TradeListState extends State<TradeList> {
       'setcode': 'IKO'
   });
   final List<MagicCard> cards = [];
-  double total;
+  double? total;
 
   @override
   void initState() {
@@ -193,7 +191,7 @@ class _TradeListState extends State<TradeList> {
   }
 
   void _recalulateTotal() {
-    final sum = cards.fold(0.0, (previousValue, element) => previousValue + element.price * element.quantity);
+    final sum = cards.fold(0.0, (dynamic previousValue, element) => previousValue + element.price! * element.quantity);
     setState(() { total = sum; });
   }
 

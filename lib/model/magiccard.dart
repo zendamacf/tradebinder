@@ -8,39 +8,39 @@ part 'magiccard.g.dart';
 @HiveType(typeId: 1)
 class MagicCard {
   @HiveField(0)
-  final int id;
+  final int? id;
   @HiveField(1)
-  final String collectornumber;
+  final String? collectornumber;
   @HiveField(2)
-  final String name;
+  final String? name;
   @HiveField(3)
-  final String rarity;
+  final String? rarity;
   @HiveField(4)
-  final String type;
+  final String? type;
   @HiveField(5)
-  final String power;
+  final String? power;
   @HiveField(6)
-  final String toughness;
+  final String? toughness;
   @HiveField(7)
-  final String oracletext;
+  final String? oracletext;
   @HiveField(8)
-  final String flavortext;
+  final String? flavortext;
   @HiveField(9)
-  final String url;
+  final String? url;
   @HiveField(10)
-  final String imageurl;
+  final String? imageurl;
   @HiveField(11)
-  final String setname;
+  final String? setname;
   @HiveField(12)
-  final String setcode;
+  final String? setcode;
   bool foil = false;
   int quantity = 1;
-  double price;
-  DateTime priceUpdated;
+  double? price;
+  DateTime? priceUpdated;
 
   Future refreshPrice() async {
     final resp = await Api.getPrice(id);
-    final prices = (foil) ? resp['foil'] : resp['normal'];
+    final prices = (foil) ? resp!['foil'] : resp!['normal'];
     price = Utils.parseMoney(prices[Config.pricePoint]);
     priceUpdated = DateTime.parse(prices['updated']);
   }

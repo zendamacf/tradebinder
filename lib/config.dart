@@ -6,7 +6,7 @@ class Config {
     return 'mid';
   }
 
-  static Future<String> get apiKey async {
+  static Future<String?> get apiKey async {
     return json.decode(await rootBundle.loadString('assets/secret.json'))['api_key'];
   }
 }

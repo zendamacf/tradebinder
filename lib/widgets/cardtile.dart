@@ -11,7 +11,7 @@ class CardTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(card.name),
+      title: Text(card.name!),
       subtitle: Text('${card.quantity} x ${Utils.formatMoney(card.price)} [${card.setcode}]'),
       leading: RemoteImage(card.imageurl),
       contentPadding: EdgeInsets.symmetric(horizontal: 10),

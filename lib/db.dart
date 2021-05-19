@@ -10,7 +10,7 @@ class DB {
     final box = await cardBox;
     // Explicitly declare, otherwise Hive complains
     // ignore: omit_local_variable_types
-    final Map<int, MagicCard> inserts = {};
+    final Map<int?, MagicCard> inserts = {};
     var newCards = 0;
 
     // Convert to map of records to insert
@@ -26,7 +26,7 @@ class DB {
   static Future<List<MagicCard>> getAllCards() async {
     final box = await cardBox;
     final cards = box.values.toList();
-    cards.sort((a, b) => a.name.compareTo(b.name));
+    cards.sort((a, b) => a.name!.compareTo(b.name!));
     return cards;
   }
 

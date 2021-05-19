@@ -17,26 +17,26 @@ class MagicCardAdapter extends TypeAdapter<MagicCard> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return MagicCard(
-      id: fields[0] as int,
-      collectornumber: fields[1] as String,
-      name: fields[2] as String,
-      rarity: fields[3] as String,
-      type: fields[4] as String,
-      power: fields[5] as String,
-      toughness: fields[6] as String,
-      oracletext: fields[7] as String,
-      flavortext: fields[8] as String,
-      url: fields[9] as String,
-      imageurl: fields[10] as String,
-      setname: fields[11] as String,
-      setcode: fields[12] as String,
+      id: fields[0] as int?,
+      collectornumber: fields[1] as String?,
+      name: fields[2] as String?,
+      rarity: fields[3] as String?,
+      type: fields[4] as String?,
+      power: fields[5] as String?,
+      toughness: fields[6] as String?,
+      oracletext: fields[7] as String?,
+      flavortext: fields[8] as String?,
+      url: fields[9] as String?,
+      imageurl: fields[10] as String?,
+      setname: fields[11] as String?,
+      setcode: fields[12] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, MagicCard obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(13)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)

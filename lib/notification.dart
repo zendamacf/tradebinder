@@ -1,11 +1,11 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class Notification {
-  int id;
-  String title;
-  String body;
+  late int id;
+  String? title;
+  String? body;
 
-  AndroidFlutterLocalNotificationsPlugin plugin;
+  late AndroidFlutterLocalNotificationsPlugin plugin;
   String channelId = 'tradebinder';
 
   void cancel() {

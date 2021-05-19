@@ -1,9 +1,10 @@
+import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:tradebinder/config.dart';
 import 'package:tradebinder/model/magiccard.dart';
 
 class Api {
-  static Future<dynamic> _get(String endpoint, {Map<String, dynamic> params}) async {
+  static Future<dynamic> _get(String endpoint, {Map<String, dynamic>? params}) async {
     final options = BaseOptions(
       baseUrl: 'https://cardscraper.kalopsia.dev/api/',
       headers: { 'X-API-KEY': await Config.apiKey }
@@ -17,21 +18,21 @@ class Api {
     }
   }
 
-  static Future<Map> getCardPage(String cursor) async {
-    Map res = await Api._get('cards', params: {
+  static Future<Map?> getCardPage(String? cursor) async {
+    var res = await (Api._get('cards', params: {
       'cursor': cursor,
       'limit': 2500  // Maximum API will allow
-    });
+    }) as FutureOr<Map<dynamic, dynamic>?>);
     return res;
   }
 
-  static Future<List<MagicCard>> getNewCards(String cursor) async {
+  static Future<List<MagicCard>> getNewCards(String? cursor) async {
     // Explicitly declare, as otherwise it assumes List<dynamic>
     // ignore: omit_local_variable_types
     List<MagicCard> cards = [];
 
     while (true) {
-      final res = await getCardPage(cursor);
+      final res = await (getCardPage(cursor) as FutureOr<Map<dynamic, dynamic>>);
       final newCards = res['data'].map<MagicCard>((r) => MagicCard.fromMap(r)).toList();
       cards += newCards;
       print('Fetched ${newCards.length} cards using cursor $cursor');
@@ -42,8 +43,8 @@ class Api {
     return cards;
   }
 
-  static Future<Map> getPrice(cardid) async {
-    Map res = await Api._get('pricing/$cardid');
+  static Future<Map?> getPrice(cardid) async {
+    var res = await (Api._get('pricing/$cardid') as FutureOr<Map<dynamic, dynamic>?>);
     return res;
   }
 }

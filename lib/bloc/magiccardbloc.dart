@@ -32,9 +32,9 @@ class MagicCardBloc {
     );
 
     var prevCards = await DB.getAllCards();
-    String cursor;
+    String? cursor;
     if (prevCards.isNotEmpty) {
-      prevCards.sort((a, b) => a.id.compareTo(b.id));
+      prevCards.sort((a, b) => a.id!.compareTo(b.id!));
       final lastid = prevCards[prevCards.length - 1].id;  // More efficient than .last property
       final hashids = HashIds();
       cursor = hashids.encode(lastid);
